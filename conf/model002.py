@@ -1,4 +1,4 @@
-workdir = './model/model001'
+workdir = './model/model002'
 seed = 20
 apex = True
 
@@ -48,7 +48,7 @@ contrast = dict(name='RandomBrightnessContrast', params=dict(brightness_limit=0.
 totensor = dict(name='ToTensor', params=dict(normalize=normalize))
 rotate = dict(name='Rotate', params=dict(limit=30, border_mode=0), p=0.7)
 
-window_policy = 2
+window_policy = 3
 
 data = dict(
     train=dict(

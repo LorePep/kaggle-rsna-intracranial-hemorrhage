@@ -32,6 +32,17 @@ def apply_window(image, center, width):
     return image
 
 
+def apply_sigmoid_window(image, center, width, U=1.0, eps=(1.0 / 255.0)):
+    image = image.copy()
+    ue = np.log((U / eps) - 1.0)
+    W = (2 / width) * ue
+    b = ((-2 * center) / width) * ue
+    z = W * image + b
+    image = U / (1 + np.power(np.e, -1.0 * z))
+
+    return image
+
+
 def get_dicom_meta(dicom):
     return {
         'PatientID': dicom.PatientID, # can be grouped (20-548)

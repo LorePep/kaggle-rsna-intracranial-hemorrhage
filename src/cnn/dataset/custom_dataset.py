@@ -38,6 +38,15 @@ def apply_window_policy(image, row, policy):
             image2 - image2.mean(),
             image3 - image3.mean(),
         ]).transpose(1,2,0)
+    elif policy == 3:
+        image1 = misc.apply_sigmoid_window(image, 40, 80) # brain
+        image2 = misc.apply_sigmoid_window(image, 80, 200) # subdural
+        image3 = misc.apply_sigmoid_window(image, 40, 380) # bone
+        image = np.array([
+            image1 - image1.mean(),
+            image2 - image2.mean(),
+            image3 - image3.mean(),
+        ]).transpose(1,2,0)
     else:
         raise
 
@@ -76,7 +85,7 @@ class CustomDataset(torch.utils.data.Dataset):
             log('read dataset (%d records)' % len(self.df))
 
         self.df = apply_dataset_policy(self.df, self.cfg.dataset_policy)
-        self.df = self.df.sample(560)
+        # self.df = self.df.sample(560)
 
     def __len__(self):
         return len(self.df)

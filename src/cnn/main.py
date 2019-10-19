@@ -111,6 +111,7 @@ def train(cfg, model):
         })
 
     folds = [fold for fold in range(cfg.n_fold) if cfg.fold != fold]
+    print(folds)
     loader_train = factory.get_dataloader(cfg.data.train, folds)
     loader_valid = factory.get_dataloader(cfg.data.valid, [cfg.fold])
 
