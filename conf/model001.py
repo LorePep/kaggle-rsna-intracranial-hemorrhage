@@ -4,7 +4,7 @@ apex = True
 
 # defines which fold to keep out.
 n_fold = 5
-epoch = 3
+epoch = 4
 resume_from = None
 
 batch_size = 16
